@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kamari Convo Club · Mid-Progress Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #ECEAE4;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 48px 20px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+  max-width: 560px;
+  width: 100%;
+}
+.header h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #1C2B2A;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+.header .subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #8A9290;
+  margin-bottom: 16px;
+}
+.header .note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.83rem;
+  color: #9A9A98;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow:
+    0 1px 3px rgba(28,43,42,0.05),
+    0 6px 20px rgba(28,43,42,0.08),
+    0 20px 48px rgba(28,43,42,0.06);
+  max-width: 560px;
+  width: 100%;
+  padding: 28px 28px 32px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.search-wrap {
+  position: relative;
+  margin-bottom: 28px;
+}
+.search-wrap input {
+  width: 100%;
+  background: #F4F2EE;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 16px 13px 44px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  color: #1C2B2A;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.search-wrap input:focus { box-shadow: 0 0 0 2px #3A6B6540; }
+.search-wrap input::placeholder { color: #B0B5B3; }
+.search-icon {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.class-section { margin-bottom: 28px; }
+.class-section:last-child { margin-bottom: 0; }
+.class-section.all-hidden { display: none; }
+
+.class-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.class-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 5px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.pill-a { background: #EAF4F2; color: #2D5550; }
+.pill-b { background: #FDF6E4; color: #7A5010; }
+.class-line { flex: 1; height: 1px; background: #ECEAE4; }
+
+.name-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.name-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 12px;
+  background: #F4F2EE;
+  color: #2A2A2A;
+  transition: all 0.18s ease;
+}
+.name-btn:hover {
+  background: #3A6B65;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(58,107,101,0.3);
+}
+.name-btn.hidden { display: none; }
+.name-btn .arrow { font-size: 0.75rem; opacity: 0.4; transition: opacity 0.18s, transform 0.18s; }
+.name-btn:hover .arrow { opacity: 1; transform: translateX(3px); }
+.sec-b .name-btn:hover { background: #8B6A18; box-shadow: 0 4px 14px rgba(139,106,24,0.3); }
+
+.divider { height: 1px; background: #ECEAE4; margin: 24px 0; }
+
+.empty-state {
+  text-align: center;
+  padding: 28px 0 8px;
+  font-size: 0.88rem;
+  color: #B0B5B3;
+  display: none;
+  line-height: 1.7;
+}
+
+.footer { margin-top: 28px; text-align: center; }
+.footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #3A6B65;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Kamari Convo Club 🌿</h1>
+  <p class="subtitle">Mid-Progress Reports · Sessions 1–4 of 6</p>
+  <p class="note">Tap your name to open your mid-progress report 💛</p>
+</div>
+
+<div class="card">
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search your name..." oninput="filterNames()"/>
+  </div>
+
+  <!-- CLASS A -->
+  <div class="class-section sec-a" id="classA">
+    <div class="class-heading">
+      <span class="class-pill pill-a">Class A 🌷</span>
+      <div class="class-line"></div>
+    </div>
+    <div class="name-grid">
+      <a class="name-btn" href="ClassA_Alda___Rahma.html">Alda/Rahma <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Ana.html">Ana <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Bia.html">Bia <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Bya.html">Bya <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Eca___Elza_C.html">Eca / Elza C <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Fatma.html">Fatma <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Indira.html">Indira <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Keisha.html">Keisha <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Marissa.html">Marissa <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Mawaddah.html">Mawaddah <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Nadia___Jasmine.html">Nadia/Jasmine <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Nadya.html">Nadya <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Nailu.html">Nailu <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Salmahan.html">Salmahan <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Tari.html">Tari <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Tifa.html">Tifa <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Wilda.html">Wilda <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassA_Zahra.html">Zahra <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CLASS B -->
+  <div class="class-section sec-b" id="classB">
+    <div class="class-heading">
+      <span class="class-pill pill-b">Class B 🌻</span>
+      <div class="class-line"></div>
+    </div>
+    <div class="name-grid">
+      <a class="name-btn" href="ClassB_Caca___Salsabila_Nadhifah.html">Caca <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Charina.html">Charina <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Dian.html">Dian <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Endah.html">Endah <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Isyana.html">Isyana <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Jovita.html">Jovita <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Nadisa.html">Nadisa <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Noni.html">Noni <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Ria.html">Ria <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Salsa___Salsa_Billa_Yuke.html">Salsa <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Shady.html">Shady <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Syarifah.html">Syarifah <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Tish.html">Tish <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Ufi___Hanifah.html">Ufi/Hanifah <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Ulfah.html">Ulfah <span class="arrow">→</span></a>
+      <a class="name-btn" href="ClassB_Verna.html">Verna <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    Nama tidak ditemukan 🔍<br>
+    <span style="font-size:0.8rem;color:#C8C5C0;">Coba cek ejaan namamu</span>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>With so much love, The Kamari Team 🌿</p>
+</div>
+
+<script>
+function filterNames() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  let totalVisible = 0;
+
+  document.querySelectorAll('.name-btn').forEach(btn => {
+    const match = !q || btn.textContent.toLowerCase().includes(q);
+    btn.classList.toggle('hidden', !match);
+    if (match) totalVisible++;
+  });
+
+  document.querySelectorAll('.class-section').forEach(sec => {
+    const anyVisible = [...sec.querySelectorAll('.name-btn')].some(b => !b.classList.contains('hidden'));
+    sec.classList.toggle('all-hidden', !anyVisible);
+  });
+
+  document.getElementById('emptyState').style.display = totalVisible === 0 ? 'block' : 'none';
+}
+</script>
+
+</body>
+</html>
