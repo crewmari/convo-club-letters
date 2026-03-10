@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCC — Salmahan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #EDE8DF;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 20px 64px;
+}
+.page-header { text-align: center; margin-bottom: 24px; width: 100%; max-width: 480px; }
+.page-header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: #2D1E14; letter-spacing: -0.01em; }
+.page-header p { font-size: 12px; color: #9A8070; margin-top: 5px; }
+.card { background: #FDFAF5; border-radius: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(45,30,20,0.06), 0 8px 24px rgba(45,30,20,0.10), 0 24px 48px rgba(45,30,20,0.08); width: 100%; max-width: 480px; }
+.card-banner { padding: 24px 24px 18px; background: #FDFAF5; }
+.banner-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
+.name-block h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 21px; font-weight: 700; color: #2D1E14; line-height: 1.2; }
+.level-pill { background: #2D1E14; color: #F5EFE4; font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 3px; }
+.tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #8A6A50; margin-top: 6px; line-height: 1.4; }
+.divider-line { height: 1px; background: linear-gradient(90deg, #E0D8CC, transparent); margin: 14px 0 12px; }
+.session-dots { display: flex; gap: 5px; align-items: center; }
+.dot { width: 26px; height: 5px; border-radius: 3px; }
+.dot.done { background: #4A3020; }
+.dot.left  { background: #DDD5C8; }
+.dot-label { font-size: 10px; color: #A08878; margin-left: 8px; }
+.card-body { padding: 6px 24px 26px; display: flex; flex-direction: column; gap: 10px; }
+.intro-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: #6A4A38; line-height: 1.7; padding: 6px 2px 2px; }
+.sparkle { display: flex; gap: 12px; align-items: flex-start; border-radius: 16px; padding: 14px; }
+.sparkle-icon { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+.sparkle-content { flex: 1; }
+.sparkle-label { font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 5px; }
+.sparkle-text { font-size: 13px; line-height: 1.75; color: #2D1E14; }
+.s-conf { background: #EEF4EC; }
+.s-conf .sparkle-icon { background: #C8DEC4; }
+.s-conf .sparkle-label { color: #4A7A48; }
+.s-grow { background: #FAF0F0; }
+.s-grow .sparkle-icon { background: #F0D0D4; }
+.s-grow .sparkle-label { color: #A85060; }
+.tip-strip { background: #4A6A48; border-radius: 16px; padding: 18px 20px; margin-top: 2px; }
+.tip-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 12px; opacity: 0.92; }
+.tip-body { font-size: 12.5px; color: #EEF4EC; line-height: 1.75; }
+.tip-body ul { margin-top: 10px; list-style: none; display: flex; flex-direction: column; gap: 8px; padding-left: 0; }
+.tip-body ul li { padding-left: 18px; position: relative; color: #EEF4EC; line-height: 1.65; }
+.tip-body ul li::before { content: '→'; position: absolute; left: 0; color: #C8E0B0; font-size: 11px; top: 2px; }
+.tip-body em { font-style: italic; color: #D4E8C0; }
+.sign-off { text-align: right; padding-top: 6px; }
+.sign-off-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #8A6A50; line-height: 1.5; }
+.brew-invite { display: flex; gap: 14px; align-items: flex-start; background: linear-gradient(135deg, #FDF6DC, #FAF0F0); border-radius: 16px; padding: 16px 18px; margin-top: 4px; border: 1px solid #EDD8C8; }
+.brew-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.brew-text { flex: 1; }
+.brew-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 700; color: #2D1E14; margin-bottom: 6px; }
+.brew-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #6A4A38; line-height: 1.6; margin-bottom: 4px; }
+.brew-sub { font-size: 12px; color: #8A6A50; margin-bottom: 12px; line-height: 1.5; }
+.brew-btn { display: inline-block; background: #3A2418; color: #F5E8C0; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 7px 16px; border-radius: 20px; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-header">
+  <h1>Kamari Convo Club 🌿</h1>
+  <p>Mid-Progress Reports · Sessions 1–4 of 6</p>
+</div>
+<div class="card">
+  <div class="card-banner">
+    <div class="banner-top">
+      <div class="name-block">
+        <h2>Salmahan, you're glowing! ✨</h2>
+        <div class="tagline">your ability to keep it together under pressure is admirable.</div>
+      </div>
+      <div class="level-pill">Kamari Class A</div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="session-dots">
+      <div class="dot done"></div><div class="dot done"></div>
+      <div class="dot done"></div><div class="dot done"></div>
+      <div class="dot left"></div><div class="dot left"></div>
+      <span class="dot-label">4 of 6 sessions done</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="intro-text">"You've arrived — now it's about expanding what's already beautiful."</p>
+    <div class="sparkle s-conf">
+      <div class="sparkle-icon">✨</div>
+      <div class="sparkle-content">
+        <div class="sparkle-label">You're amazing at this</div>
+        <div class="sparkle-text">You speak smoothly and your ideas are logically organised — listeners always know where you're going.</div>
+      </div>
+    </div>
+    <div class="sparkle s-conf">
+      <div class="sparkle-icon">🌟</div>
+      <div class="sparkle-content">
+        <div class="sparkle-label">And also this</div>
+        <div class="sparkle-text">You can paraphrase effectively — you find new ways to express ideas, which shows real language flexibility.</div>
+      </div>
+    </div>
+    <div class="sparkle s-grow">
+      <div class="sparkle-icon">🌱</div>
+      <div class="sparkle-content">
+        <div class="sparkle-label">Something beautiful to explore</div>
+        <div class="sparkle-text">Your next beautiful step is inspiring the sisters around you by bringing even more of yourself into the room.</div>
+      </div>
+    </div>
+    <div class="tip-strip">
+      <div class="tip-title">A small invitation for you 🌿</div>
+      <div class="tip-body">
+        You've reached a place where the next layer isn't about fixing anything — it's about expanding. The most beautiful thing you can do from here is use your voice to open the room for others.
+        <ul>
+          <li>When a sister goes quiet mid-sentence, stay with her — a patient nod or warm smile changes everything.</li>
+          <li>Try being the one who deepens the conversation — ask a follow-up, offer a different angle, invite someone else in.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sign-off">
+      <div class="sign-off-text">With so much love, The Kamari Team 🌿</div>
+    </div>
+    <div class="brew-invite">
+      <div class="brew-icon">☕</div>
+      <div class="brew-text">
+        <div class="brew-title">One more thing — what type of brew are you?</div>
+        <div class="brew-desc">We made a little MBTI-like game just for Kamari Convo Club members! Find out your brew type and let us know. 🫶</div>
+        <div class="brew-sub">See you in tonight's session, Kakari!</div>
+        <a class="brew-btn" href="https://kcc-whats-your-brew.netlify.app/" target="_blank">Find out your brew →</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
